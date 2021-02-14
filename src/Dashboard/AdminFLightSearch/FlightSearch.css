@@ -1,0 +1,13 @@
+[type="date"] {
+    background:#fff url("../../images/calendar.png")  97% 50% no-repeat ;
+color:"white" ;
+padding-right:20px
+}
+  [type="date"]::-webkit-inner-spin-button {
+    display: none;
+    
+  }
+  [type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    
+  }

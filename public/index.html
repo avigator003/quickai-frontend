@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900' type='text/css'>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+<link rel="stylesheet" href="./dist/css/adminlte.min.css">
+    <link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="./vendor/font-awesome/css/all.min.css" />
+<link rel="stylesheet" type="text/css" href="./vendor/owl.carousel/assets/owl.carousel.min.css" />
+<link rel="stylesheet" type="text/css" href="./vendor/owl.carousel/assets/owl.theme.default.min.css" />
+<link rel="stylesheet" type="text/css" href="./vendor/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="./vendor/daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" type="text/css" href="./css/stylesheet.css" />
+
+
+<!-- Optional theme -->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" href="./plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<!-- iCheck -->
+<link rel="stylesheet" href="./plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- JQVMap -->
+<link rel="stylesheet" href="./plugins/jqvmap/jqvmap.min.css">
+<!-- Theme style -->
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="./plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+<!-- Daterange picker -->
+<link rel="stylesheet" href="./plugins/daterangepicker/daterangepicker.css">
+<!-- summernote -->
+<link rel="stylesheet" href="./plugins/summernote/summernote-bs4.min.css">
+
+
+<!-- Latest compiled and minified JavaScript -->
+
+<script src="./vendor/jquery/jquery.min.js"></script>
+<script src="./vendor/jquery-ui/jquery-ui.min.js"></script> 
+<script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<script src="./vendor/owl.carousel/owl.carousel.min.js"></script> 
+<script src="./vendor/bootstrap-spinner/bootstrap-spinner.js"></script> 
+<script src="./vendor/daterangepicker/moment.min.js"></script> 
+<script src="./vendor/daterangepicker/daterangepicker.js"></script> 
+
+<script src="./js/theme.js"></script>
+<script>
+  $(function() {
+   'use strict';
+    // Autocomplete
+    $('#hotelsFrom,#flightFrom,#flightTo,#trainFrom,#trainTo,#busFrom,#busTo,#carsCity').autocomplete({
+      minLength: 3,
+      delay: 100,
+      source: function (request, response) {
+        $.ajax({
+    type: 'POST',
+    url: 'https://api.travelvogues.com/api/GetAirportList',
+    data: JSON.stringify ({Query: request.term}),
+    success: function(data) { 
+      console.log(data)
+      var newData = [];
+      var i;
+      for (i = 0; i < data.length; i++) {
+        newData[i]=data[i].Airport;
+      }
+      response(newData)},
+    contentType: "application/json",
+    dataType: 'json'
+});
+    },
+    }); 
+    
+    $('.submit-done').on('click', function() {
+        $('.travellers-dropdown').fadeOut(function() {
+            $(this).hide();
+        });
+    });
+    // Hotels Check In Date
+    $('#hotelsCheckIn').daterangepicker({
+    singleDatePicker: true,
+    minDate: moment(),
+    autoUpdateInput: false,
+    }, function(chosen_date) {
+    $('#hotelsCheckIn').val(chosen_date.format('MM-DD-YYYY'));
+    });
+    // Hotels Check Out Date
+    $('#hotelsCheckOut').daterangepicker({
+    singleDatePicker: true,
+    minDate: moment(),
+    autoUpdateInput: false,
+    }, function(chosen_date) {
+    $('#hotelsCheckOut').val(chosen_date.format('MM-DD-YYYY'));
+    });
+    
+    // Flight Depart Date
+    $('#flightDepart').daterangepicker({
+    singleDatePicker: true,
+    minDate: moment(),
+    autoUpdateInput: false,
+    }, function(chosen_date) {
+    $('#flightDepart').val(chosen_date.format('MM-DD-YYYY'));
+    });
+    
+    // Flight Return Date
+    $('#flightReturn').daterangepicker({
+    singleDatePicker: true,
+    minDate: moment(),
+    autoUpdateInput: false,
+    }, function(chosen_date) {
+    $('#flightReturn').val(chosen_date.format('MM-DD-YYYY'));
+    });
+    
+    // Train Depart Date
+    $('#trainDepart').daterangepicker({
+    singleDatePicker: true,
+    minDate: moment(),
+    autoUpdateInput: false,
+    }, function(chosen_date) {
+    $('#trainDepart').val(chosen_date.format('MM-DD-YYYY'));
+    });
+    
+    // Bus Depart Date
+    $('#busDepart').daterangepicker({
+    singleDatePicker: true,
+    minDate: moment(),
+    autoUpdateInput: false,
+    }, function(chosen_date) {
+    $('#busDepart').val(chosen_date.format('MM-DD-YYYY'));
+    });
+    
+    // Cars Pick up Date
+    $('#carsPickup').daterangepicker({
+    singleDatePicker: true,
+    minDate: moment(),
+    autoUpdateInput: false,
+    }, function(chosen_date) {
+    $('#carsPickup').val(chosen_date.format('MM-DD-YYYY'));
+    
+    });
+    
+    // Cars Drop-off Date
+    $('#carsDropoff').daterangepicker({
+    singleDatePicker: true,
+    minDate: moment(),
+    autoUpdateInput: false,
+    }, function(chosen_date) {
+    $('#carsDropoff').val(chosen_date.format('MM-DD-YYYY'));
+    });
+    
+    
+  });
+
+
+
+
+  
+  </script> 
+  <script>
+    
+  </script>
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+  
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- ChartJS -->
+<script src="./plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="./plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="./plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="./plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="./plugins/moment/moment.min.js"></script>
+<script src="./plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="./plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="./plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="./plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="./dist/js/adminlte.js"></script>
+
+<script src="./dist/js/demo.js"></script>
+<script src="./dist/js/pages/dashboard.js"></script>
+
+</html>
