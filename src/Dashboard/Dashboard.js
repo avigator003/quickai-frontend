@@ -3,7 +3,6 @@ import { useStateValue } from '../ContextApi/StateProvider';
 import firebase from 'firebase'
 import Modal from '@material-ui/core/Modal'
 import { Button, createMuiTheme, Input, makeStyles, TextField, ThemeProvider, withStyles } from '@material-ui/core';
-import {db} from '../Database/Database'
 import { Autocomplete } from '@material-ui/lab';
 import $ from 'jquery'
 import '../Flights/FlightSearch.css'
@@ -95,8 +94,16 @@ const history=useHistory();
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
          
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+        <li class="nav-item">
+            <Link to="/dashboard" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+            </Link>
+          </li>
+          <li class="nav-item ">
+            <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-fighter-jet"></i>
               <p>
                 Flights
@@ -129,7 +136,7 @@ const history=useHistory();
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-user-plus"></i>
               <p>
                 Distributors
                 <i class="fas fa-angle-left right"></i>
@@ -160,7 +167,7 @@ const history=useHistory();
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-credit-card"></i>
               <p>
                  Payment
                 <i class="fas fa-angle-left right"></i>
@@ -179,7 +186,7 @@ const history=useHistory();
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-stamp"></i>
               <p>
                  Transactions
                 <i class="fas fa-angle-left right"></i>

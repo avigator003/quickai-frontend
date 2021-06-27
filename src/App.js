@@ -21,6 +21,7 @@ import Login from './Login/Login';
 import SignUp from './Login/SignUp';
 import DistributorProfile from './Dashboard/Distributor/DistributorProfile';
 import DistributorTransactions from './Dashboard/Distributor/DistributorTransactions';
+import DashboardPage from './Dashboard/DashboardPage/DashboardPage';
 
 
 function App() {
@@ -39,6 +40,13 @@ function App() {
 <Route path="/twowayflights" component={TwoWayFlightSearchDetails}></Route>
 <Route path="/confirmflight" component={BookingFlightsConfirmDetails}></Route>
 <Route path="/payment" component={Payment}></Route>
+
+
+       <Route path="/dashboard">
+       <Dashboard title="Dashboard">
+       <DashboardPage/>
+       </Dashboard>
+       </Route>
 
 
        <Route path="/adminflightsearch">

@@ -6,7 +6,6 @@ import useLocalStorage from 'react-use-localstorage';
 import { CircularProgress, Modal } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useHistory } from 'react-router-dom';
-import { auth } from '../../Database/Database';
 import Axios from 'axios'
 
 

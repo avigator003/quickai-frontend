@@ -6,7 +6,6 @@ import useLocalStorage from 'react-use-localstorage';
 import { CircularProgress, Modal } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useHistory } from 'react-router-dom';
-import { auth } from '../Database/Database';
 
 
 import Axios from 'axios'
@@ -216,7 +215,6 @@ await fetch('https://api.travelvogues.com/api/SearchFlights', requestOptions)
       else{
         stopage=segmentLength-1
       }
-
 
        var durationArray=segArray.map(seg=>seg.Duration)
        var groundTimeArray=segArray.map(seg=>seg.groundTime)

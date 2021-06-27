@@ -4,7 +4,7 @@ import firebase from 'firebase'
 import Background from '../../images/bg/image-2.jpg'
 import Modal from '@material-ui/core/Modal'
 import { Button, createMuiTheme, Input, makeStyles, TextField, ThemeProvider, withStyles } from '@material-ui/core';
-import {db} from '../../Database/Database'
+
 import { Autocomplete } from '@material-ui/lab';
 import $ from 'jquery'
 import './FlightSearch.css'

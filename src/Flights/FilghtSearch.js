@@ -4,7 +4,6 @@ import firebase from 'firebase'
 import Background from '../images/bg/image-2.jpg'
 import Modal from '@material-ui/core/Modal'
 import { Button, createMuiTheme, Input, makeStyles, TextField, ThemeProvider, withStyles } from '@material-ui/core';
-import {db} from '../Database/Database'
 import { Autocomplete } from '@material-ui/lab';
 import $ from 'jquery'
 import './FlightSearch.css'
@@ -104,6 +103,8 @@ const onBlur=(e)=>{
  e.currentTarget.type = "text";
  e.currentTarget.placeholder = "Enter a Date";
 }
+
+
 const onFromChange=(event)=>{
   event.preventDefault()
   
@@ -121,13 +122,12 @@ const onFromChange=(event)=>{
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ Query: query })
       };
-     fetch('https://api.travelvogues.com/api/GetAirportList', requestOptions)
+     fetch('http://travelvogues.com/Api/AirportList', requestOptions)
     .then(response => response.json())
     .then(data =>
       {
-      console.log(data)
-      setFromData(data);
-      })
+        console.log("list",data)
+        setFromData(data)})
       }
     getData();
     }
@@ -140,8 +140,7 @@ useEffect(()=>{
   $(function () {
     $(".dropdown li").on('mouseenter mouseleave', function (e) {
 		if ($(window).width() > 991) {
-			console.log("called")
-            var elm = $('.dropdown-menu', this);
+		        var elm = $('.dropdown-menu', this);
             if(elm.length>0)
             {
             var off = elm.offset();
@@ -179,7 +178,6 @@ const onToChange=(event)=>{
   
   var query=event.target.value;
   setTo(query)
-  console.log(query)
   if(query.length<=2)
   {
   }
@@ -215,7 +213,6 @@ const setFlight=()=>{
 
 const addFromData=(event)=>{
   event.preventDefault();
-  console.log("user",userId)
   if(flightWay==1)
   {
   localStorage.setItem( 'from', from );
@@ -272,8 +269,6 @@ const addFromData=(event)=>{
   
   
 else{
-
-
   localStorage.setItem( 'from', from );
   localStorage.setItem( 'to', to );
   localStorage.setItem( 'departDate', departDate );
@@ -654,19 +649,24 @@ setFlightWay(e.target.value)
                           <div class="col-lg-6 form-group ">
 
                           <Autocomplete
+                               loading={true}
+                       
                            freeSolo
                            id="combo-box-demo"
                            options={fromData}
-                           getOptionLabel={(airport) => airport.Airport}
-                           onChange={(event, value) =>setFrom(value.AirportCode)} 
+                           getOptionLabel={(airport) => airport.AIRPORTNAME}
+                           onChange={(event, value) =>setFrom(value.AirPortCode)} 
                            renderInput={(params) => 
+                            <>
                            <CssTextField 
+                           
                             className={[classes.root]}
                             value={from} onChange={onFromChange}
-                            
                            {...params}  
                            label="From"  variant="standard"
-                          />}
+                          />
+                        </>
+                        }
                           
  /> 
                           <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span> 
@@ -675,17 +675,18 @@ setFlightWay(e.target.value)
 
                             <div class="col-lg-6 form-group">
                            
+                           
                           <Autocomplete
+                          loading={true}
                           freeSolo
                            id="combo-box-demo"
                            options={toData}
-                           getOptionLabel={(airport) => airport.Airport}
-                           onChange={(event, value) =>setTo(value.AirportCode)} 
+                           getOptionLabel={(airport) => airport.AIRPORTNAME}
+                           onChange={(event, value) =>setTo(value.AirPortCode)} 
                            renderInput={(params) => 
                             <ThemeProvider theme={muitheme}>
                            <CssTextField 
                             className={[classes.root]}
-                            
                            {...params} value={to} onChange={onToChange} 
                            label="To"  variant="standard"
                           /></ThemeProvider>}/>           

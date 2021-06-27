@@ -60,7 +60,7 @@ export default function Login() {
     console.log(email, password)
     if (email == "anish@gmail.com" && password == "travel123") {
       toast.success("Successful saved")
-      history.push("/adminflightsearch")
+      history.push("/dashboard")
     }
     else {
       toast.error("Username or Password is invalid")

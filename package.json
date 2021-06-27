@@ -1,6 +1,8 @@
 {
   "name": "quickai",
   "version": "0.1.0",
+  "quickaiserver": "https://travelvogues.com/api/",
+  "proxy": "https://cors-anywhere.herokuapp.com/",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.4.0",

@@ -14,8 +14,7 @@ function DistributorCommision() {
     const location = useLocation();
 
     useEffect(()=>{
-        console.log(location.state.id,"idjf")
-        if(location.state.id)
+        if(location.state)
             setId(location.state.id)
         
 
